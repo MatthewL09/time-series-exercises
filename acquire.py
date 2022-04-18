@@ -36,7 +36,7 @@ INFORMATION, AND CREATES A DF FOR EACH, THEN WRITING EACH DF TO CSV FILES.
         df = pd.concat([df, pd.DataFrame(data['payload']['items'])])#.reset_index(drop = True)
 
     df_items = df.copy
-    print('✅ Items data acquired')
+    print('Items data acquired')
 
     #url2 | STORES DATA
     url2 = 'https://python.zgulde.net/api/v1/stores'
@@ -45,7 +45,7 @@ INFORMATION, AND CREATES A DF FOR EACH, THEN WRITING EACH DF TO CSV FILES.
     df = pd.DataFrame(data['payload']['stores'])
 
     df_stores = df.copy()
-    print('✅ Stores data acquired')
+    print('Stores data acquired')
 
     #url3 | SALES DATA
     url3 = 'https://python.zgulde.net/api/v1/sales'
@@ -59,7 +59,7 @@ INFORMATION, AND CREATES A DF FOR EACH, THEN WRITING EACH DF TO CSV FILES.
         df = pd.concat([df, pd.DataFrame(data['payload']['sales'])])#.reset_index(drop = True)
 
     df_sales = df.copy()
-    print('✅ Sales data acquired')
+    print('Sales data acquired')
 
     #saving dfs to csv files
     df_items.to_csv('items.csv')#, index = False)
@@ -87,13 +87,13 @@ FUNCTION.
         print('Data is cached. Reading from csv files.')
         
         df_items = pd.read_csv('items.csv')
-        print('✅ Items data acquired')
+        print('Items data acquired')
 
         df_stores = pd.read_csv('stores.csv')
-        print('✅ Items data acquired')
+        print('Items data acquired')
 
         df_sales = pd.read_csv('sales.csv')
-        print('✅ Sales data acquired')
+        print('Sales data acquired')
 
     df_combined = pd.merge(df_items,
                             df_sales,
@@ -105,7 +105,7 @@ FUNCTION.
                             how = 'left',
                             left_on = 'store',
                             right_on = 'store_id')
-    print(f'{"*" * len("✅Acquisition Complete")}\n✅Acquisition Complete')
+    print(f'{"*" * len("Acquisition Complete")}\nAcquisition Complete')
 
     #removing index cols
     df_combined.drop(columns = ['Unnamed: 0_x', 'Unnamed: 0_y', 'Unnamed: 0'], inplace = True)
@@ -125,11 +125,11 @@ def acquire_power():
 
     df = pd.read_csv('https://raw.githubusercontent.com/jenfly/opsd/master/opsd_germany_daily.csv')
     df_ec = df.copy()
-    print('✅ Power data acquired from link')
+    print('Power data acquired from link')
 
     #cache to local csv
     df_ec.to_csv('opsd.csv')
-    print('✅ Power data cached to local csv')
+    print('Power data cached to local csv')
 
     return df_ec
 
@@ -150,7 +150,7 @@ DATA FROM THE LINK AND CACHES IT LOCALLY. THE PRINT STATEMENTS CONFIRM EACH STEP
     else:
         print('Power data is cached. Reading to df...')
         df = pd.read_csv('opsd.csv')
-        print('✅ Power data acquired from local csv file')
+        print('Power data acquired from local csv file')
 
         #cache data to local csv
     
